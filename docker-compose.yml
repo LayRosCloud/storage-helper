@@ -1,0 +1,15 @@
+# services:
+#   storagehandler:
+#     image: ${DOCKER_REGISTRY-}storagehandler
+#     build:
+#       context: .
+#       dockerfile: StorageHandler/Dockerfile
+services:
+  postgresql:
+    image: 'postgres:16.2'
+    environment:
+      - 'POSTGRES_PASSWORD=admin'
+      - 'POSTGRES_USER=admin'
+      - 'POSTGRES_DB=storage_base'
+    ports:
+      - '5432:5432'
