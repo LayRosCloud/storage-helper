@@ -4,7 +4,7 @@ using StorageHandler.Utils.Data;
 
 namespace StorageHandler.Features.Resource.FindAllResource;
 
-public class FindAllResourceQuery : IRequest<IPageableResponse<ResourceFullDto>>
+public class FindAllResourcesQuery : IRequest<IPageableResponse<ResourceFullDto>>
 {
     public int Limit { get; set; }
     public int Page { get; set; }

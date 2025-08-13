@@ -5,6 +5,11 @@ namespace StorageHandler.Features.Resource.FindByIdResource;
 
 public class FindByIdResourceQuery : IRequest<ResourceFullDto>
 {
+    public FindByIdResourceQuery(long id)
+    {
+        Id = id;
+    }
+
     /// <summary>
     /// Id of Resource
     /// </summary>

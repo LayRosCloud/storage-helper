@@ -5,7 +5,7 @@ using StorageHandler.Utils.Data;
 
 namespace StorageHandler.Features.Resource.FindAllResource;
 
-public class FindAllResourceHandler : IRequestHandler<FindAllResourceQuery, IPageableResponse<ResourceFullDto>>
+public class FindAllResourceHandler : IRequestHandler<FindAllResourcesQuery, IPageableResponse<ResourceFullDto>>
 {
     private readonly ITransactionWrapper _wrapper;
     private readonly IMapper _mapper;
@@ -18,13 +18,13 @@ public class FindAllResourceHandler : IRequestHandler<FindAllResourceQuery, IPag
         _repository = repository;
     }
 
-    public async Task<IPageableResponse<ResourceFullDto>> Handle(FindAllResourceQuery request, CancellationToken cancellationToken)
+    public async Task<IPageableResponse<ResourceFullDto>> Handle(FindAllResourcesQuery request, CancellationToken cancellationToken)
     {
         var resources = await _wrapper.Execute(_ => FindAllAsync(request), cancellationToken);
         return resources.Map<ResourceFullDto>(_mapper);
     }
 
-    private async Task<IPageableResponse<Resource>> FindAllAsync(FindAllResourceQuery request)
+    private async Task<IPageableResponse<Resource>> FindAllAsync(FindAllResourcesQuery request)
     {
         var resources = await _repository.FindAllAsync(request.Limit, request.Page, request.Name);
         return resources;

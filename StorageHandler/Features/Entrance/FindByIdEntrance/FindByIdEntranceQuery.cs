@@ -5,6 +5,11 @@ namespace StorageHandler.Features.Entrance.FindByIdEntrance;
 
 public class FindByIdEntranceQuery : IRequest<EntranceFullDto>
 {
+    public FindByIdEntranceQuery(long id)
+    {
+        Id = id;
+    }
+
     /// <summary>
     /// Id of Entrance
     /// </summary>

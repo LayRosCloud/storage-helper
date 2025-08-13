@@ -5,6 +5,11 @@ namespace StorageHandler.Features.Resource.UpdateResourceArchive;
 
 public class UpdateResourceArchiveCommand : IRequest<ResourceFullDto>
 {
+    public UpdateResourceArchiveCommand(long id)
+    {
+        Id = id;
+    }
+
     /// <summary>
     /// Id of Resource
     /// </summary>
