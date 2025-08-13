@@ -24,7 +24,7 @@ public class UnitController : ControllerBase
     public async Task<IActionResult> FindAllAsync([FromQuery] GetUnitsQuery query)
     {
         var result = await _mediator.Send(query);
-        HttpContext.Response.Headers.Add("X-Total-count", result.TotalCount.ToString());
+        HttpContext.Response.Headers.Add("x-total-count", result.TotalCount.ToString());
         return Ok(result.Elements);
     }
     

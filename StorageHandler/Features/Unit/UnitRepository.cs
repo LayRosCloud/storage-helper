@@ -36,7 +36,20 @@ public class UnitRepository : IUnitRepository
         return result;
     }
 
-    public async Task<bool> AnyNameAsync(string name)
+    public async Task<bool> ExistsUnitByIdAsync(long id)
+    {
+        return await _storage.Units.AnyAsync(x => x.Id == id);
+    }
+
+    public async Task<bool> ExistsUnitListByIdAsync(List<long> ids)
+    {
+        if (ids.Any() == false) return true;
+
+        var count = await _storage.Units.CountAsync(x => ids.Contains(x.Id));
+        return ids.Count == count;
+    }
+
+    public async Task<bool> ExistsUnitByNameAsync(string name)
     {
         return await _storage.Units.AnyAsync(x => x.Name.ToLower().Equals(name.Trim().ToLower()));
     }
@@ -57,5 +70,10 @@ public class UnitRepository : IUnitRepository
     {
         var result = _storage.Units.Remove(unit);
         return result.Entity;
+    }
+
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        return _storage.SaveChangesAsync(cancellationToken);
     }
 }

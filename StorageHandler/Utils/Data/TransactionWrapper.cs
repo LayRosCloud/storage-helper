@@ -1,4 +1,6 @@
-﻿namespace StorageHandler.Utils.Data;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+
+namespace StorageHandler.Utils.Data;
 
 public class TransactionWrapper : ITransactionWrapper
 {
@@ -9,12 +11,12 @@ public class TransactionWrapper : ITransactionWrapper
         _storage = storage;
     }
 
-    public async Task<TEntity> Execute<TEntity>(Func<Task<TEntity>> func, CancellationToken cancellationToken = new()) where TEntity : class
+    public async Task<TEntity> Execute<TEntity>(Func<IDbContextTransaction?, Task<TEntity>> func, CancellationToken cancellationToken = new()) where TEntity : class
     {
         var transaction = await _storage.BeginTransactionAsync(cancellationToken);
         try
         {
-            var result = await func();
+            var result = await func(transaction);
             await transaction.CommitAsync(cancellationToken);
             return result;
         }

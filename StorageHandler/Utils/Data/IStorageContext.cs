@@ -14,7 +14,5 @@ public interface IStorageContext
     public DbSet<Entrance> Entrances { get; }
     public DbSet<EntranceBucket> EntranceBuckets { get; }
     Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
-    Task RollbackTransactionAsync(CancellationToken cancellationToken = default);
-    Task CommitTransactionAsync(CancellationToken cancellationToken = default);
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

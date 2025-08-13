@@ -20,7 +20,7 @@ public class GetUnitsHandler : IRequestHandler<GetUnitsQuery, IPageableResponse<
 
     public async Task<IPageableResponse<UnitResponseDto>> Handle(GetUnitsQuery request, CancellationToken cancellationToken)
     {
-        var result = await _wrapper.Execute(() => FindAllAsync(request), cancellationToken);
+        var result = await _wrapper.Execute(_ => FindAllAsync(request), cancellationToken);
         return result.Map<UnitResponseDto>(_mapper);
     }
 

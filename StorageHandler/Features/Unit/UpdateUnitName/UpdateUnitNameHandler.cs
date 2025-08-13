@@ -9,14 +9,12 @@ namespace StorageHandler.Features.Unit.UpdateUnitName;
 
 public class UpdateUnitNameHandler : IRequestHandler<UpdateUnitNameCommand, UnitResponseDto>
 {
-    private readonly IStorageContext _storage;
     private readonly IUnitRepository _repository;
     private readonly IMapper _mapper;
     private readonly ITransactionWrapper _wrapper;
 
-    public UpdateUnitNameHandler(IStorageContext storage, IUnitRepository repository, IMapper mapper, ITransactionWrapper wrapper)
+    public UpdateUnitNameHandler(IUnitRepository repository, IMapper mapper, ITransactionWrapper wrapper)
     {
-        _storage = storage;
         _repository = repository;
         _mapper = mapper;
         _wrapper = wrapper;
@@ -24,7 +22,7 @@ public class UpdateUnitNameHandler : IRequestHandler<UpdateUnitNameCommand, Unit
 
     public async Task<UnitResponseDto> Handle(UpdateUnitNameCommand request, CancellationToken cancellationToken)
     {
-        var response = await _wrapper.Execute( () => UpdateAsync(request, cancellationToken), cancellationToken);
+        var response = await _wrapper.Execute(_ => UpdateAsync(request, cancellationToken), cancellationToken);
         return _mapper.Map<UnitResponseDto>(response);
     }
 
@@ -34,13 +32,13 @@ public class UpdateUnitNameHandler : IRequestHandler<UpdateUnitNameCommand, Unit
         if (unit == null)
             throw ExceptionUtils.GetNotFoundException($"Unit with id {request.Id} is not found");
 
-        var hasUnitWithName = await _repository.AnyNameAsync(request.Name);
+        var hasUnitWithName = await _repository.ExistsUnitByNameAsync(request.Name);
 
         if (hasUnitWithName)
             throw new ValidationException("Error! You don't usage this name for unit");
 
         var response = _repository.Update(_mapper.Map<Unit>(request));
-        await _storage.SaveChangesAsync(cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
         return response;
     }
 

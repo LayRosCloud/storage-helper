@@ -21,7 +21,7 @@ public class FindByIdUnitHandler : IRequestHandler<FindByIdUnitQuery, UnitRespon
 
     public async Task<UnitResponseDto> Handle(FindByIdUnitQuery request, CancellationToken cancellationToken)
     {
-        var item = await _wrapper.Execute(() => FindByIdAsync(request.Id), cancellationToken);
+        var item = await _wrapper.Execute(_ => FindByIdAsync(request.Id), cancellationToken);
         return _mapper.Map<UnitResponseDto>(item);
     }
 

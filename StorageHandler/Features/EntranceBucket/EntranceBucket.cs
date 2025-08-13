@@ -30,10 +30,10 @@ public class EntranceBucket
     /// <summary>
     /// Resource object
     /// </summary>
-    public Resource.Resource? Resource { get; set; }
+    public virtual Resource.Resource? Resource { get; set; }
 
     /// <summary>
     /// Unit object
     /// </summary>
-    public Unit.Unit? Unit { get; set; }
+    public virtual Unit.Unit? Unit { get; set; }
 }

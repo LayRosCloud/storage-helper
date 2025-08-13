@@ -6,4 +6,9 @@ public static class ExceptionUtils
     {
         return new NotFoundException(message);
     }
+
+    public static NotFoundException GetNotFoundException(string objectName, object id)
+    {
+        return new NotFoundException($"{objectName} with id {id} is not found!");
+    }
 }

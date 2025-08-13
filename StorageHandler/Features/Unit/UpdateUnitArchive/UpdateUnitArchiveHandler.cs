@@ -24,7 +24,7 @@ public class UpdateUnitArchiveHandler : IRequestHandler<UpdateUnitArchiveCommand
 
     public async Task<UnitResponseDto> Handle(UpdateUnitArchiveCommand request, CancellationToken cancellationToken)
     {
-        var result = await _wrapper.Execute(() => UpdateAsync(request, cancellationToken), cancellationToken);
+        var result = await _wrapper.Execute(_ => UpdateAsync(request, cancellationToken), cancellationToken);
         return _mapper.Map<UnitResponseDto>(result);
     }
     private async Task<Unit> UpdateAsync(UpdateUnitArchiveCommand request, CancellationToken cancellationToken)

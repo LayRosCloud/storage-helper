@@ -10,20 +10,18 @@ public class DeleteByIdUnitHandler : IRequestHandler<DeleteByIdUnitCommand, Unit
 {
     private readonly IMapper _mapper;
     private readonly ITransactionWrapper _wrapper;
-    private readonly IStorageContext _storage;
     private readonly IUnitRepository _repository;
 
-    public DeleteByIdUnitHandler(IMapper mapper, IUnitRepository repository, ITransactionWrapper wrapper, IStorageContext storage)
+    public DeleteByIdUnitHandler(IMapper mapper, IUnitRepository repository, ITransactionWrapper wrapper)
     {
         _mapper = mapper;
         _repository = repository;
         _wrapper = wrapper;
-        _storage = storage;
     }
 
     public async Task<UnitResponseDto> Handle(DeleteByIdUnitCommand request, CancellationToken cancellationToken)
     {
-        var result = await _wrapper.Execute(async () => 
+        var result = await _wrapper.Execute(async _ => 
                 await DeleteByIdAsync(request.Id, cancellationToken), cancellationToken);
         return _mapper.Map<UnitResponseDto>(result);
     }
@@ -36,7 +34,7 @@ public class DeleteByIdUnitHandler : IRequestHandler<DeleteByIdUnitCommand, Unit
             throw ExceptionUtils.GetNotFoundException($"Unit with id {id} is not found");
 
         var deletedUnit = DeleteByUnit(unit);
-        await _storage.SaveChangesAsync(cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
         return deletedUnit;
     }
 

@@ -20,5 +20,5 @@ public class Entrance
     /// <summary>
     /// List of Buckets
     /// </summary>
-    public IList<EntranceBucket.EntranceBucket> Buckets { get; set; } = new List<EntranceBucket.EntranceBucket>();
+    public virtual ICollection<EntranceBucket.EntranceBucket>? Buckets { get; set; }
 }
