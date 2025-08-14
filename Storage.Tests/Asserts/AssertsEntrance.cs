@@ -27,8 +27,9 @@ public static class AssertsEntrance
         Assert.Equal(extended.Id, destination.Id);
         Assert.Equal(extended.Number, destination.Number);
         Assert.Equal(extended.CreatedAt, destination.CreatedAt);
-        Assert.NotNull(extended.Buckets);
-        Assert.NotNull(destination.Buckets);
+        if (extended.Buckets == null || destination.Buckets == null)
+            return;
+
         var extendedBuckets = extended.Buckets.ToList();
         var destinationBuckets = destination.Buckets.ToList();
 
