@@ -7,7 +7,7 @@ public class UpdateUnitNameValidator : AbstractValidator<UpdateUnitNameCommand>
     public UpdateUnitNameValidator()
     {
         RuleFor(x => x.Id)
-            .GreaterThanOrEqualTo(1);
+            .NotEmpty().GreaterThan(0);
         RuleFor(x => x.Name)
             .NotEmpty()
             .MaximumLength(10);

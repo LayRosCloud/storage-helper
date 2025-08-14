@@ -6,6 +6,7 @@ public class CreateUnitValidator : AbstractValidator<CreateUnitCommand>
 {
     public CreateUnitValidator()
     {
-        RuleFor(x=>x.Name).NotEmpty().MaximumLength(10);
+        RuleFor(x=>x.Name)
+            .NotEmpty().MaximumLength(10);
     }
 }

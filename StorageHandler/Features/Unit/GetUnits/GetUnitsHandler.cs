@@ -5,7 +5,7 @@ using StorageHandler.Utils.Data;
 
 namespace StorageHandler.Features.Unit.GetUnits;
 
-public class GetUnitsHandler : IRequestHandler<GetUnitsQuery, IPageableResponse<UnitResponseDto>>
+public class GetUnitsHandler : IRequestHandler<FindAllUnitsQuery, IPageableResponse<UnitResponseDto>>
 {
     private readonly IUnitRepository _repository;
     private readonly ITransactionWrapper _wrapper;
@@ -18,13 +18,13 @@ public class GetUnitsHandler : IRequestHandler<GetUnitsQuery, IPageableResponse<
         _wrapper = wrapper;
     }
 
-    public async Task<IPageableResponse<UnitResponseDto>> Handle(GetUnitsQuery request, CancellationToken cancellationToken)
+    public async Task<IPageableResponse<UnitResponseDto>> Handle(FindAllUnitsQuery request, CancellationToken cancellationToken)
     {
         var result = await _wrapper.Execute(_ => FindAllAsync(request), cancellationToken);
         return result.Map<UnitResponseDto>(_mapper);
     }
 
-    public async Task<IPageableResponse<Unit>> FindAllAsync(GetUnitsQuery request)
+    public async Task<IPageableResponse<Unit>> FindAllAsync(FindAllUnitsQuery request)
     {
         var items = await _repository.FindAllAsync(request.Limit, request.Page, request.Name, request.IsArchived);
         return items;

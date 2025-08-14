@@ -7,6 +7,6 @@ public class UpdateUnitArchiveValidator : AbstractValidator<UpdateUnitArchiveCom
     public UpdateUnitArchiveValidator()
     {
         RuleFor(x => x.Id)
-            .GreaterThanOrEqualTo(1);
+            .NotEmpty().GreaterThan(0);
     }
 }

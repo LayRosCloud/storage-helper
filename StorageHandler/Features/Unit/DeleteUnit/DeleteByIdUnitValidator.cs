@@ -7,6 +7,6 @@ public class DeleteByIdUnitValidator : AbstractValidator<DeleteByIdUnitCommand>
     public DeleteByIdUnitValidator()
     {
         RuleFor(x => x.Id)
-            .GreaterThanOrEqualTo(1);
+            .NotEmpty().GreaterThan(0);
     }
 }

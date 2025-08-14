@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace StorageHandler.Features.Unit.GetUnits;
+namespace StorageHandler.Features.Resource.FindAllResource;
 
-public class GetUnitsValidator : AbstractValidator<FindAllUnitsQuery>
+public class FindAllResourceValidator : AbstractValidator<FindAllResourcesQuery>
 {
-    public GetUnitsValidator()
+    public FindAllResourceValidator()
     {
         RuleFor(x => x.Limit)
             .NotEmpty().GreaterThan(0);

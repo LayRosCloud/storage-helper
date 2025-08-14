@@ -4,7 +4,7 @@ using StorageHandler.Utils.Data;
 
 namespace StorageHandler.Features.Unit.GetUnits;
 
-public class GetUnitsQuery : IRequest<IPageableResponse<UnitResponseDto>>
+public class FindAllUnitsQuery : IRequest<IPageableResponse<UnitResponseDto>>
 {
     /// <summary>
     /// Page for pagination

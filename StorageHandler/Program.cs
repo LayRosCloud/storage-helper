@@ -3,6 +3,9 @@ using System.Reflection;
 using FluentMigrator.Runner;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using StorageHandler.Features.Entrance;
+using StorageHandler.Features.EntranceBucket;
+using StorageHandler.Features.Resource;
 using StorageHandler.Features.Unit;
 using StorageHandler.Utils.Data;
 using StorageHandler.Utils.Data.Migrations;
@@ -32,6 +35,9 @@ services.AddMediatR(options =>
 services.AddAutoMapper(config =>
 {
     config.AddProfile<UnitMapper>();
+    config.AddProfile<EntranceMapper>();
+    config.AddProfile<EntranceBucketMapper>();
+    config.AddProfile<ResourceMapper>();
 });
 services.AddSwaggerGen(options =>
 {
@@ -52,7 +58,7 @@ services.AddCors(options =>
 services.AddFluentMigratorCore()
     .ConfigureRunner(x => x.AddPostgres()
         .WithGlobalConnectionString(connectionString)
-        .ScanIn(typeof(InitialSchema).Assembly)
+        .ScanIn(typeof(InitialSchema).Assembly).For.Migrations()
     );
 services.AddLogging(lb =>
 {

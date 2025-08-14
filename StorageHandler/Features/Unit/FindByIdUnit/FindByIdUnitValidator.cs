@@ -7,6 +7,6 @@ public class FindByIdUnitValidator : AbstractValidator<FindByIdUnitQuery>
     public FindByIdUnitValidator()
     {
         RuleFor(x => x.Id)
-            .GreaterThanOrEqualTo(1);
+            .NotEmpty().GreaterThan(1);
     }
 }
