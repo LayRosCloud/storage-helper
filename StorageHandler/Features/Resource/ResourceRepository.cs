@@ -12,7 +12,7 @@ public class ResourceRepository : IResourceRepository
         _storage = storage;
     }
 
-    public async Task<IPageableResponse<Resource>> FindAllAsync(int limit, int page, string? name = null)
+    public async Task<IPageableResponse<Resource>> FindAllAsync(int limit, int page, string? name = null, bool isArchive = false)
     {
         var query = _storage.Resources.AsQueryable();
         if (name != null)
@@ -21,6 +21,7 @@ public class ResourceRepository : IResourceRepository
             query = query.Where(x => x.Name.ToLower().Contains(sentence));
         }
 
+        query = query.Where(x => x.ArchiveAt.HasValue == isArchive);
         var count = query.Count();
         query = query.OrderBy(x => x.Name);
         query = query.Skip(limit * page).Take(limit);

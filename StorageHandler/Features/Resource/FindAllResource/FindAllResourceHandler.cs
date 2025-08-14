@@ -26,7 +26,7 @@ public class FindAllResourceHandler : IRequestHandler<FindAllResourcesQuery, IPa
 
     private async Task<IPageableResponse<Resource>> FindAllAsync(FindAllResourcesQuery request)
     {
-        var resources = await _repository.FindAllAsync(request.Limit, request.Page, request.Name);
+        var resources = await _repository.FindAllAsync(request.Limit, request.Page, request.Name, request.IsArchived);
         return resources;
     }
 }

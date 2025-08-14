@@ -33,8 +33,8 @@ public class UpdateResourceNameHandler : IRequestHandler<UpdateResourceNameComma
         var resource = await _repository.FindByIdAsync(request.Id);
         if (resource == null)
             throw ExceptionUtils.GetNotFoundException("Resource", request.Id);
-        var resName = await _repository.ExistsResourceByNameAsync(resource.Name);
-        if (resName != null)
+        var existsResource = await _repository.ExistsResourceByNameAsync(request.Name);
+        if (existsResource)
             throw new ValidationException("Resource with name exists");
         resource.Name = resource.Name.Trim();
         var entity = _repository.Update(resource);

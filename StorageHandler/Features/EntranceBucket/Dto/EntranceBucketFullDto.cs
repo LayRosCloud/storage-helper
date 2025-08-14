@@ -1,4 +1,7 @@
-﻿namespace StorageHandler.Features.EntranceBucket.Dto;
+﻿using StorageHandler.Features.Resource.Dto;
+using StorageHandler.Features.Unit.Dto;
+
+namespace StorageHandler.Features.EntranceBucket.Dto;
 
 public class EntranceBucketFullDto
 {
@@ -20,10 +23,10 @@ public class EntranceBucketFullDto
     /// <summary>
     /// Resource object
     /// </summary>
-    public virtual Resource.Resource? Resource { get; set; }
+    public ResourceFullDto? Resource { get; set; }
 
     /// <summary>
     /// Unit object
     /// </summary>
-    public virtual Unit.Unit? Unit { get; set; }
+    public UnitResponseDto? Unit { get; set; }
 }

@@ -4,7 +4,7 @@ namespace StorageHandler.Features.Resource;
 
 public interface IResourceRepository
 {
-    Task<IPageableResponse<Resource>> FindAllAsync(int limit, int page, string? name = null);
+    Task<IPageableResponse<Resource>> FindAllAsync(int limit, int page, string? name = null, bool isArchive = false);
     Task<Resource?> FindByIdAsync(long id);
     Task<bool> ExistsResourceByNameAsync(string name);
     Task<bool> ExistsResourceByIdAsync(long id);

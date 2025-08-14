@@ -50,6 +50,16 @@ public class EntranceBucketRepository : IEntranceBucketRepository
         return result.Entity;
     }
 
+    public async Task<bool> ExistsBucketByResourceIdAsync(long resourceId)
+    {
+        return await _storage.EntranceBuckets.AnyAsync(x => x.ResourceId == resourceId);
+    }
+
+    public async Task<bool> ExistsBucketByUnitIdAsync(long unitId)
+    {
+        return await _storage.EntranceBuckets.AnyAsync(x => x.UnitId == unitId);
+    }
+
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         return _storage.SaveChangesAsync(cancellationToken);

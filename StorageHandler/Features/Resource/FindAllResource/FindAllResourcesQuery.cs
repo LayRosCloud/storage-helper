@@ -8,5 +8,6 @@ public class FindAllResourcesQuery : IRequest<IPageableResponse<ResourceFullDto>
 {
     public int Limit { get; set; }
     public int Page { get; set; }
-    public string? Name { get; set; }
+    public string? Name { get; set; } = null;
+    public bool IsArchived { get; set; } = false;
 }

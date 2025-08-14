@@ -24,7 +24,7 @@ public class GetUnitsHandler : IRequestHandler<FindAllUnitsQuery, IPageableRespo
         return result.Map<UnitResponseDto>(_mapper);
     }
 
-    public async Task<IPageableResponse<Unit>> FindAllAsync(FindAllUnitsQuery request)
+    private async Task<IPageableResponse<Unit>> FindAllAsync(FindAllUnitsQuery request)
     {
         var items = await _repository.FindAllAsync(request.Limit, request.Page, request.Name, request.IsArchived);
         return items;

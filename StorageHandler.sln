@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36310.24 d17.14
+VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageHandler", "StorageHandler\StorageHandler.csproj", "{3A39147D-6309-4B15-9AA4-D337676A2FE9}"
 EndProject
@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 	ProjectSection(SolutionItems) = preProject
 		Readme.md = Readme.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageHandler.Tests", "..\StorageHandler.Tests\StorageHandler.Tests.csproj", "{B12535A3-C778-4E2E-B2D3-CCA47BE34023}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Tests", "Storage.Tests\Storage.Tests.csproj", "{2EAD0952-218E-4DB5-BCEC-CB1A4692C01A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +30,14 @@ Global
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B12535A3-C778-4E2E-B2D3-CCA47BE34023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12535A3-C778-4E2E-B2D3-CCA47BE34023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12535A3-C778-4E2E-B2D3-CCA47BE34023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12535A3-C778-4E2E-B2D3-CCA47BE34023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EAD0952-218E-4DB5-BCEC-CB1A4692C01A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EAD0952-218E-4DB5-BCEC-CB1A4692C01A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EAD0952-218E-4DB5-BCEC-CB1A4692C01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EAD0952-218E-4DB5-BCEC-CB1A4692C01A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

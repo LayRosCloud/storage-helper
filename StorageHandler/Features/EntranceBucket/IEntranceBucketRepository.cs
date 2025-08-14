@@ -10,5 +10,7 @@ public interface IEntranceBucketRepository
     Task CreateRangeAsync(IEnumerable<EntranceBucket> buckets);
     EntranceBucket Update(EntranceBucket entrance);
     EntranceBucket Delete(EntranceBucket entrance);
+    Task<bool> ExistsBucketByResourceIdAsync(long resourceId);
+    Task<bool> ExistsBucketByUnitIdAsync(long unitId);
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

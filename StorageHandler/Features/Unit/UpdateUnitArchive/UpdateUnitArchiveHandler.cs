@@ -10,14 +10,12 @@ namespace StorageHandler.Features.Unit.UpdateUnitArchive;
 public class UpdateUnitArchiveHandler : IRequestHandler<UpdateUnitArchiveCommand, UnitResponseDto>
 {
     private readonly IUnitRepository _repository;
-    private readonly IStorageContext _storage;
     private readonly IMapper _mapper;
     private readonly ITransactionWrapper _wrapper;
 
-    public UpdateUnitArchiveHandler(IUnitRepository repository, IStorageContext storage, IMapper mapper, ITransactionWrapper wrapper)
+    public UpdateUnitArchiveHandler(IUnitRepository repository, IMapper mapper, ITransactionWrapper wrapper)
     {
         _repository = repository;
-        _storage = storage;
         _mapper = mapper;
         _wrapper = wrapper;
     }
@@ -36,7 +34,7 @@ public class UpdateUnitArchiveHandler : IRequestHandler<UpdateUnitArchiveCommand
         unit.ArchiveAt = unit.ArchiveAt.HasValue ? null : CurrentTimeUtils.GetCurrentDate();
 
         var response = _repository.Update(unit);
-        await _storage.SaveChangesAsync(cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
         return response;
     }
 
